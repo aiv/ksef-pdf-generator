@@ -1,3 +1,39 @@
+# Informacje na temat forka
+
+Ten fork wprowadza następujące zmiany w stosunku do oryginalnego repozytorium:
+
+## Dodane funkcjonalności
+
+### 1. Interfejs CLI (Command Line Interface)
+- Dodano nowy plik [src/cli.ts](src/cli.ts) umożliwiający generowanie PDF faktur z poziomu wiersza poleceń
+- CLI automatycznie wykrywa numer KSeF z nazwy pliku XML (format: `NIP-DATA-HASH-KOD.xml`)
+- Wsparcie dla wszystkich typów faktur: FA(1), FA(2), FA(3)
+
+### 2. Nowy skrypt npm
+- Dodano skrypt `cli` w [package.json](package.json) do uruchamiania CLI: `npm run cli`
+
+### 3. Nowe zależności deweloperskie
+- `@types/node` (^22.19.9) - typy TypeScript dla Node.js
+- `tsx` (^4.21.0) - szybki executor TypeScript dla Node.js
+
+## Przykłady użycia CLI
+
+```bash
+# Wygeneruj PDF z automatycznym wykrywaniem numeru KSeF
+npm run cli -- 5555555555-20250808-9231003CA67B-BE.xml
+
+# Określ ścieżkę wyjściową
+npm run cli -- 5555555555-20250808-9231003CA67B-BE.xml -o 5555555555-20250808-9231003CA67B-BE.pdf
+
+# Pomoc
+npm run cli -- --help
+```
+
+### Błędy orygnału
+- W oryginalnej wersji QR generuje się do wersji testowej z hardcoded numerem KSeF. W tej wersji usunąłem generowanie tego QR.
+
+---
+
 # Biblioteka do generowania wizualizacji PDF faktur i UPO
 
 Biblioteka do generowania wizualizacji PDF faktur oraz UPO na podstawie plików XML po stronie klienta.
